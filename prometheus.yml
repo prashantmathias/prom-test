@@ -1,0 +1,19 @@
+global:
+  scrape_interval: 5s      # how often Prometheus pulls metrics
+  evaluation_interval: 5s  # how often rules are evaluated
+
+scrape_configs:
+
+  # ── Server 1 – Order Service ─────────────────────────────────────────────
+  - job_name: "server1-order-service"
+    static_configs:
+      - targets: ["host.docker.internal:8081"]
+        labels:
+          service: "order-service"
+
+  # ── Server 2 – User Service ──────────────────────────────────────────────
+  - job_name: "server2-user-service"
+    static_configs:
+      - targets: ["host.docker.internal:8082"]
+        labels:
+          service: "user-service"
